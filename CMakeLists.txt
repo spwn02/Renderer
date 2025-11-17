@@ -1,8 +1,6 @@
 # Configuration
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
-project (Renderer VERSION 1.0)
-
 set(CXX_STANDARD 23)
 set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 23)
