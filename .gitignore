@@ -1,0 +1,10 @@
+# CMake directory
+out/
+
+# Visual Studio files and folder
+.vs/
+.vscode/
+
+# Externalities
+texture.jpg
+logs
