@@ -22,6 +22,6 @@ target_compile_definitions(Core PUBLIC
 
 target_precompile_headers(Core PUBLIC "Corepch.h")
 
-target_include_directories(Core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/core" "src" "${CMAKE_CURRENT_SOURCE_DIR}")
+target_include_directories(Core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_SOURCE_DIR}")
 
 add_subdirectory(vendor)
