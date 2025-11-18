@@ -33,7 +33,8 @@ namespace Core {
     Log::Assert(m_handle, "Failed to create GLFW window!");
 
     glfwMakeContextCurrent(m_handle);
-    Renderer::OpenGLSetup::loadGlad();
+    if (Renderer::RendererAPI::getAPIType() == Renderer::OpenGL)
+      Renderer::OpenGLSetup::loadGlad();
 
     setVSync(m_specification.VSync);
 

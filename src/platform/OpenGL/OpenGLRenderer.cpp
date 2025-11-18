@@ -45,7 +45,12 @@ namespace Renderer {
     uint32_t first,
     uint32_t count) const
   {
-    m_frameBuffer->bind();
+    bool hasFB = m_frameBuffer->hasBuffer();
+    if (hasFB)
+    {
+      Log::Info("WWWWWW");
+      m_frameBuffer->bind();
+    }
     shader->bind();
     m_vertexArray->bind();
 
@@ -53,7 +58,8 @@ namespace Renderer {
 
     shader->unbind();
     m_vertexArray->unbind();
-    m_frameBuffer->unbind();
+    if (hasFB)
+      m_frameBuffer->unbind();
   }
 
 }

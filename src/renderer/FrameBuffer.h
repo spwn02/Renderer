@@ -19,9 +19,12 @@ namespace Renderer {
     inline void resize(std::shared_ptr<Texture>& texture, float width, float height) { resize(texture, (int32_t)width, (int32_t)height); };
 
     virtual void drawBuffer() const = 0;
+    bool hasBuffer() const { return m_hasBuffer; }
 
     static FrameBuffer* create();
   protected:
+    bool m_hasBuffer = false;
+
     uint32_t m_rendererID = 0;
     uint32_t m_renderBuffer = 0;
   };

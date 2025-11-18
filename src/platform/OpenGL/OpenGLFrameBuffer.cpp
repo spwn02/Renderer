@@ -32,6 +32,8 @@ namespace Renderer {
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
       Log::Assert(false, "Framebuffer is not complete!");
+
+    m_hasBuffer = true;
   }
 
   void OpenGLFrameBuffer::bind() const
