@@ -9,17 +9,21 @@ namespace Renderer {
 
   void OpenGLSetup::setup()
   {
+    #ifdef CORE_PLATFORM_LINUX
+      glfwInitHint(GLFW_PLATFORM, GLFW_PLATFORM_X11);
+    #endif
     Log::Assert(glfwInit(), "Failed to Initialize GLFW!");
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-#ifdef CORE_DEBUG
-    glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
-#endif
+    #ifdef CORE_DEBUG
+      glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+    #endif
+
     glfwSetErrorCallback([](int code, const char* message) {
-      Log::Assert(false, "GLFW error({0}): {1}", code, message);
-      });
+      Log::Error("GLFW error({0}): {1}", code, message);
+    });
 
     s_initialized = true;
   }
