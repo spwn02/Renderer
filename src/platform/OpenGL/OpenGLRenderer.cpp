@@ -29,15 +29,16 @@ namespace Renderer {
   {
     Log::Assert(m_vertexArray->getIndexBuffer() != nullptr, "IndexBuffer has not been initialized!");
 
-    m_frameBuffer->bind();
+    bool hasFB = m_frameBuffer->hasBuffer();
+    if (hasFB) m_frameBuffer->bind();
     shader->bind();
     m_vertexArray->bind();
 
     glDrawElements(GL_TRIANGLES, m_vertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
 
-    m_frameBuffer->unbind();
     shader->unbind();
     m_vertexArray->unbind();
+    if (hasFB) m_frameBuffer->unbind();
   }
 
   void OpenGLRenderer::drawCount(
