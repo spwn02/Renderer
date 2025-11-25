@@ -17,7 +17,7 @@ namespace Renderer {
     glDeleteRenderbuffers(1, &m_renderBuffer);
   }
 
-  void OpenGLFrameBuffer::resize(std::shared_ptr<Texture>& texture, int32_t width, int32_t height)
+  void OpenGLFrameBuffer::resize(std::unique_ptr<Texture>& texture, int32_t width, int32_t height)
   {
     bind();
 

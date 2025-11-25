@@ -5,6 +5,7 @@
 #include <string>
 
 #include "Utils.h"
+#include "Shader.h"
 
 namespace Renderer {
 
@@ -50,7 +51,7 @@ namespace Renderer {
     uint64_t offset;
     bool normalized;
 
-    BufferElement(DataType type, const std::string& name, bool normalized = false)
+    BufferElement(const std::string& name, DataType type, bool normalized = false)
       : name(name), type(type), size(dataTypeSize(type)), offset(0), normalized(normalized) {
     }
 
@@ -58,17 +59,17 @@ namespace Renderer {
     {
       switch (type)
       {
-      case DataType::Float:   return 1;
-      case DataType::Float2:  return 2;
-      case DataType::Float3:  return 3;
-      case DataType::Float4:  return 4;
-      case DataType::Mat3:    return 3 * 3;
-      case DataType::Mat4:    return 4 * 4;
-      case DataType::Int:     return 1;
-      case DataType::Int2:    return 2;
-      case DataType::Int3:    return 3;
-      case DataType::Int4:    return 4;
-      case DataType::Boolean:    return 1;
+        case DataType::Float:   return 1;
+        case DataType::Float2:  return 2;
+        case DataType::Float3:  return 3;
+        case DataType::Float4:  return 4;
+        case DataType::Mat3:    return 3 * 3;
+        case DataType::Mat4:    return 4 * 4;
+        case DataType::Int:     return 1;
+        case DataType::Int2:    return 2;
+        case DataType::Int3:    return 3;
+        case DataType::Int4:    return 4;
+        case DataType::Boolean: return 1;
       }
 
       Log::Assert(false, "Unknown DataType in getComponentCount()!");
@@ -124,6 +125,9 @@ namespace Renderer {
 
     virtual inline const BufferLayout& getLayout() const = 0;
     virtual inline void setLayout(BufferLayout layout) = 0;
+    
+    virtual void updateLayout() const = 0;
+    virtual void updateLayout(std::unique_ptr<Shader>& shader) const = 0;
 
     static VertexBuffer* create(const std::initializer_list<float>& vertices);
     static VertexBuffer* create(float* vertices, uint32_t size);

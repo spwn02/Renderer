@@ -92,6 +92,41 @@ namespace Renderer {
     if (success) glDeleteProgram(prevShader);
   }
 
+  int32_t OpenGLComputeShader::getUniformLocation(const std::string& name) const
+  {
+    return glGetUniformLocation(m_handle, name.c_str());
+  }
+
+  void OpenGLComputeShader::setUniform1f(const std::string& name, float data) const
+  {
+    bind();
+    glUniform1f(getUniformLocation(name), data);
+  }
+
+  void OpenGLComputeShader::setUniform2f(const std::string& name, glm::vec2 data) const
+  {
+    bind();
+    glUniform2f(getUniformLocation(name), data.x, data.y);
+  }
+
+  void OpenGLComputeShader::setUniform3f(const std::string& name, glm::vec3 data) const
+  {
+    bind();
+    glUniform3f(getUniformLocation(name), data.x, data.y, data.z);
+  }
+
+  void OpenGLComputeShader::setUniform4f(const std::string& name, glm::vec4 data) const
+  {
+    bind();
+    glUniform4f(getUniformLocation(name), data.x, data.y, data.z, data.w);
+  }
+
+  void OpenGLComputeShader::setUniform1i(const std::string& name, int32_t data) const
+  {
+    bind();
+    glUniform1i(getUniformLocation(name), data);
+  }
+
   // ----------------------------------------
   //              Graphics Shader
   // ----------------------------------------
@@ -211,22 +246,39 @@ namespace Renderer {
     if (success) glDeleteProgram(prevShader);
   }
 
-  // ----------------------------------------
-  //                Uniforms
-  // ----------------------------------------
-  int32_t OpenGLUniformLocation(uint32_t program, const std::string& name)
+  int32_t OpenGLGraphicsShader::getUniformLocation(const std::string& name) const
   {
-    return glGetUniformLocation(program, name.c_str());
+    return glGetUniformLocation(m_handle, name.c_str());
   }
 
-  void OpenGLUniform1f(uint32_t location, float x)
+  void OpenGLGraphicsShader::setUniform1f(const std::string& name, float data) const
   {
-    glUniform1f(location, x);
+    bind();
+    glUniform1f(getUniformLocation(name), data);
   }
 
-  void OpenGLUniform2f(uint32_t location, float x, float y)
+  void OpenGLGraphicsShader::setUniform2f(const std::string& name, glm::vec2 data) const
   {
-    glUniform2f(location, x, y);
+    bind();
+    glUniform2f(getUniformLocation(name), data.x, data.y);
+  }
+
+  void OpenGLGraphicsShader::setUniform3f(const std::string& name, glm::vec3 data) const
+  {
+    bind();
+    glUniform3f(getUniformLocation(name), data.x, data.y, data.z);
+  }
+
+  void OpenGLGraphicsShader::setUniform4f(const std::string& name, glm::vec4 data) const
+  {
+    bind();
+    glUniform4f(getUniformLocation(name), data.x, data.y, data.z, data.w);
+  }
+
+  void OpenGLGraphicsShader::setUniform1i(const std::string& name, int32_t data) const
+  {
+    bind();
+    glUniform1i(getUniformLocation(name), data);
   }
 
 }

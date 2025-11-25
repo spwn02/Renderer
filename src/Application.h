@@ -57,7 +57,7 @@ namespace Core {
   private:
     ApplicationSpecification m_specification;
     static Application* s_instance;
-    std::shared_ptr<Window> m_window;
+    std::unique_ptr<Window> m_window;
     bool m_running = false;
 
     std::vector<std::unique_ptr<Layer>> m_layerStack;

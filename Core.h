@@ -6,6 +6,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/Buffer.h"
 #include "renderer/Shader.h"
+#include "renderer/Mesh.h"
 #include "events/ApplicationEvents.h"
 #include "events/MouseEvents.h"
 #include "events/KeyEvents.h"

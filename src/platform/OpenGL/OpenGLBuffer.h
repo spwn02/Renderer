@@ -17,6 +17,10 @@ namespace Renderer {
 
     virtual inline const BufferLayout& getLayout() const override { return m_layout; }
     virtual inline void setLayout(BufferLayout layout) override { m_layout = layout; }
+    
+    virtual void updateLayout() const override;
+    virtual void updateLayout(std::unique_ptr<Shader>& shader) const override;
+  private:
   private:
     uint32_t m_rendererID;
     BufferLayout m_layout;

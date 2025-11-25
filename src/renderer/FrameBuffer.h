@@ -15,8 +15,8 @@ namespace Renderer {
     virtual void bind() const = 0;
     virtual void unbind() const = 0;
 
-    virtual void resize(std::shared_ptr<Texture>& texture, int32_t width, int32_t height) = 0;
-    inline void resize(std::shared_ptr<Texture>& texture, float width, float height) { resize(texture, (int32_t)width, (int32_t)height); };
+    virtual void resize(std::unique_ptr<Texture>& texture, int32_t width, int32_t height) = 0;
+    inline void resize(std::unique_ptr<Texture>& texture, float width, float height) { resize(texture, (int32_t)width, (int32_t)height); };
 
     virtual void drawBuffer() const = 0;
     bool hasBuffer() const { return m_hasBuffer; }
